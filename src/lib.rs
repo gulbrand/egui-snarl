@@ -27,7 +27,7 @@ impl<T> Default for Snarl<T> {
 ///
 /// This is newtype wrapper around [`usize`] that implements
 /// necessary traits, but omits arithmetic operations.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[repr(transparent)]
 #[cfg_attr(
     feature = "serde",
