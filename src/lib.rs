@@ -37,7 +37,7 @@ impl<T> Default for Snarl<T> {
 pub struct NodeId(pub usize);
 
 /// Node of the graph.
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Default)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[non_exhaustive]
 pub struct Node<T> {
@@ -54,7 +54,7 @@ pub struct Node<T> {
 
 /// Output pin identifier.
 /// Cosists of node id and pin index.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct OutPinId {
     /// Node id.
@@ -65,7 +65,7 @@ pub struct OutPinId {
 }
 
 /// Input pin identifier. Cosists of node id and pin index.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct InPinId {
     /// Node id.
@@ -80,14 +80,14 @@ pub struct InPinId {
 /// Nodes may support multiple connections to the same input or output.
 /// But duplicate connections between same input and the same output are not allowed.
 /// Attempt to insert existing connection will be ignored.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 struct Wire {
     out_pin: OutPinId,
     in_pin: InPinId,
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Default)]
 struct Wires {
     wires: HashSet<Wire>,
 }
@@ -791,7 +791,7 @@ impl<'a, T> Iterator for NodeIdsDataIterMut<'a, T> {
 }
 
 /// Node and its output pin.
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct OutPin {
     /// Output pin identifier.
     pub id: OutPinId,
@@ -801,7 +801,7 @@ pub struct OutPin {
 }
 
 /// Node and its output pin.
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct InPin {
     /// Input pin identifier.
     pub id: InPinId,
